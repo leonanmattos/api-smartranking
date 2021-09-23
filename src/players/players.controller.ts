@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Post, Query } from '@nestjs/common';
 import { CreatePlayerDTO } from './dto/create-player.dto';
 import { PlayersService } from './players.service';
 
@@ -12,12 +12,16 @@ export class PlayersController {
   }
 
   @Get()
-  findAll() {
-    return this.playersService.findAll();
+  findAll(@Query('email') email: string) {
+    if (email) {
+      return this.playersService.findByEmail(email);
+    } else {
+      return this.playersService.findAll();
+    }
   }
 
-  @Get()
-  findByEmail() {
-    return this.playersService.findAll();
+  @Delete()
+  deletePlayer(@Query('email') email: string) {
+    this.playersService.deletePlayer(email);
   }
 }

@@ -11,5 +11,9 @@ export class CategorysController {
     createCategory(@Body() createCategoryDTO: CreateCategoryDTO) {
         return this.categoryService.create(createCategoryDTO);
     }
+
+    findAll() {
+        return this.categoryService.findAll();
+    }
     
 }

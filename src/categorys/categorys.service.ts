@@ -25,4 +25,8 @@ export class CategorysService {
         return categoryCreated.save();
     }
 
+    findAll() {
+        return this.categoryModel.find();
+    }
+
 }

@@ -3,12 +3,14 @@ import {
   Controller,
   Delete,
   Get,
+  Param,
+  Patch,
   Post,
-  Query,
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
 import { CreatePlayerDTO } from './dto/create-player.dto';
+import { UpdatePlayerDTO } from './dto/update-player.dto';
 import { PlayersParamValidationPipe } from './pipes/players-param-validation.pipe';
 import { PlayersService } from './players.service';
 
@@ -18,21 +20,30 @@ export class PlayersController {
 
   @Post()
   @UsePipes(ValidationPipe)
-  criarAtualizarJogador(@Body() createPlayerDTO: CreatePlayerDTO) {
-    return this.playersService.createUpdatePlayer(createPlayerDTO);
+  create(@Body() createPlayerDTO: CreatePlayerDTO) {
+    return this.playersService.createPlayer(createPlayerDTO);
+  }
+
+  @Patch('/:_id')
+  @UsePipes(ValidationPipe)
+  update(
+    @Param('_id', PlayersParamValidationPipe) _id: string,
+    @Body() UpdatePlayerDTO: UpdatePlayerDTO) {
+    return this.playersService.updatePlayer(_id, UpdatePlayerDTO);
   }
 
   @Get()
-  findAll(@Query('email', PlayersParamValidationPipe) email: string) {
-    if (email) {
-      return this.playersService.findByEmail(email);
-    } else {
-      return this.playersService.findAll();
-    }
+  findAll() {
+    return this.playersService.findAll();
   }
 
-  @Delete()
-  deletePlayer(@Query('email', PlayersParamValidationPipe) email: string) {
+  @Get('/:_id')
+  findById(@Param('_id', PlayersParamValidationPipe) _id: string) {
+    return this.playersService.findById(_id);
+  }
+
+  @Delete('/:_id')
+  deletePlayer(@Param('_id', PlayersParamValidationPipe) email: string) {
     this.playersService.deletePlayer(email);
   }
 }

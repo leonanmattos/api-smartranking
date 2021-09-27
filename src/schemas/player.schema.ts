@@ -16,9 +16,7 @@ export class Player {
   })
   email: string;
 
-  @Prop({
-    unique: true,
-  })
+  @Prop()
   phoneNumber: string;
 
   @Prop()

@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { Category, CategorySchema } from 'src/schemas/cagegory.schema';
+import { Category, CategorySchema } from 'src/schemas/category.schema';
 import { CategorysController } from './categorys.controller';
 import { CategorysService } from './categorys.service';
 

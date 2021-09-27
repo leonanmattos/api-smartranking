@@ -18,7 +18,6 @@ export class PlayersService {
   ) {}
 
   private readonly logger = new Logger(PlayersService.name);
-  private players: Player[] = [];
 
   async createPlayer(createPlayerDTO: CreatePlayerDTO) {
     this.logger.log(`CreatePlayerDTO`, createPlayerDTO);

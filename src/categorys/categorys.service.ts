@@ -1,7 +1,7 @@
 import { BadRequestException, Injectable, Logger } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { CategoryDocument } from 'src/schemas/cagegory.schema';
+import { CategoryDocument } from 'src/schemas/category.schema';
 import { CreateCategoryDTO } from './dto/create-category.dto';
 
 @Injectable()
